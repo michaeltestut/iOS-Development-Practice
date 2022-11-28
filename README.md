@@ -1,3 +1,3 @@
 # iOS-Development
 
-iOS development projects
+iOS development practice projects
