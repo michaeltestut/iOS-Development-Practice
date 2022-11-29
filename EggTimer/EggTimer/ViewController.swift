@@ -2,13 +2,32 @@
 //  ViewController.swift
 //  EggTimer
 //
-//  Created by Angela Yu on 08/07/2019.
-//  Copyright © 2019 The App Brewery. All rights reserved.
 //
 
 import UIKit
+import AVFoundation
 
-let eggTime = ["Soft":5, "Medium":8, "Hard":12]
+var player: AVAudioPlayer?
+
+func playSound() {
+    guard let url = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3") else { return }
+
+    do {
+        try AVAudioSession.sharedInstance().setCategory(.playback, mode: .default)
+        try AVAudioSession.sharedInstance().setActive(true)
+
+        player = try AVAudioPlayer(contentsOf: url, fileTypeHint: AVFileType.mp3.rawValue)
+
+        guard let player = player else { return }
+
+        player.play()
+
+    } catch let error {
+        print(error.localizedDescription)
+    }
+}
+
+let eggTime = ["Soft":300, "Medium":480, "Hard":720]
 var totalTime=0
 var secondsPassed=0
 
@@ -22,7 +41,6 @@ class ViewController: UIViewController {
     @IBAction func hardnessSelected(_ sender: UIButton) {
         timer.invalidate()
         secondsPassed=0
-        progressBar.progress=0.0;
         let hardness = sender.currentTitle;
         label.text=hardness
         totalTime = eggTime[hardness!]!
@@ -30,15 +48,16 @@ class ViewController: UIViewController {
     }
     
     @objc func updateCounter() {
-        //example functionality
         if secondsPassed < totalTime {
-            secondsPassed+=1
             let percentageProgress=Float(secondsPassed)/Float(totalTime)
             progressBar.progress=percentageProgress
+            secondsPassed+=1
         
         }
         else{
+            progressBar.progress=1.0
             timer.invalidate()
+            playSound()
             label.text="Done!"
         }
     }
