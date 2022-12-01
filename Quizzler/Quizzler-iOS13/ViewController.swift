@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     var questionNumber=0;
+    var totalCorrect=0
+    var timer=Timer()
     
     let quiz = [
         Question(q: "A slug's blood is green.", a: "True"),
@@ -37,24 +39,32 @@ class ViewController: UIViewController {
     
     }
 
-
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         
         let userAnswer=sender.currentTitle
         let correctAnswer = quiz[questionNumber].answer
-//        if userAnswer == correctAnswer{
-//            questionLabel.text="Correct!"
-//        }
+        if userAnswer == correctAnswer{
+            sender.backgroundColor=UIColor.green
+            totalCorrect+=1
+        }
+        else{
+            sender.backgroundColor=UIColor.red
+        }
         questionNumber+=1
-        updateUI()
+        timer=Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
         
     }
     
-    func updateUI(){
+    @objc func updateUI(){
+        let totalQuestions=quiz.count
+        trueButton.backgroundColor=UIColor.clear
+        falseButton.backgroundColor=UIColor.clear
         if questionNumber<quiz.count
-        {questionLabel.text=quiz[questionNumber].text}
+            {questionLabel.text=quiz[questionNumber].text;
+            progressBar.progress=Float(questionNumber+1)/Float(totalQuestions)
+        }
         else{
-            questionLabel.text="Game Over!"
+            questionLabel.text="Game Over! You got \(totalCorrect) questions correct"
         }
     }
 }
