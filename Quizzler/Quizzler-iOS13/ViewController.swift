@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     @IBAction func answerButtonPressed(_ sender: UIButton) {
         
         let userAnswer=sender.currentTitle
-        let correctAnswer = quiz[questionNumber].a
+        let correctAnswer = quiz[questionNumber].answer
 //        if userAnswer == correctAnswer{
 //            questionLabel.text="Correct!"
 //        }
@@ -52,7 +52,7 @@ class ViewController: UIViewController {
     
     func updateUI(){
         if questionNumber<quiz.count
-        {questionLabel.text=quiz[questionNumber].q}
+        {questionLabel.text=quiz[questionNumber].text}
         else{
             questionLabel.text="Game Over!"
         }
