@@ -35,6 +35,7 @@ class ViewController: UIViewController {
         else{
             sender.backgroundColor=UIColor.red
         }
+        quizLogic.nextQuestion()
         timer=Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: #selector(updateUI), userInfo: nil, repeats: false)
         
     }
@@ -44,7 +45,6 @@ class ViewController: UIViewController {
         falseButton.backgroundColor=UIColor.clear
         questionLabel.text=quizLogic.getQuestionText()
         progressBar.progress=quizLogic.getProgress()
-        quizLogic.nextQuestion()
      
     }
 }
