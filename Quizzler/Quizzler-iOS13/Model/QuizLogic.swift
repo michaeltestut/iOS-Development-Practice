@@ -41,7 +41,7 @@ struct QuizLogic{
             return  quiz[questionNumber].text;
         }
         else{
-            return "Game Over! You got \(totalCorrect) questions correct"
+            return "Game Over! You got \(totalCorrect) out of \(quiz.count) questions correct"
         }
     }
     func getProgress()->Float{

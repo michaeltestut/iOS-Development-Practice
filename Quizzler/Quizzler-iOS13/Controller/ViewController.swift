@@ -41,11 +41,8 @@ class ViewController: UIViewController {
     }
     
     @objc func updateUI(){
-        let hideButton = quizLogic.hideButtons()
-        if hideButton{
-            trueButton.isHidden=true
-            falseButton.isHidden=true
-        }
+        trueButton.isHidden=quizLogic.hideButtons()
+        falseButton.isHidden=quizLogic.hideButtons()
         trueButton.backgroundColor=UIColor.clear
         falseButton.backgroundColor=UIColor.clear
         questionLabel.text=quizLogic.getQuestionText()
