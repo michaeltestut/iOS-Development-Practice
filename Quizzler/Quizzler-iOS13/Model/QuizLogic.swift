@@ -53,5 +53,14 @@ struct QuizLogic{
     mutating func nextQuestion(){
         questionNumber+=1
     }
-
+    
+    func hideButtons() -> Bool{
+        if questionNumber>=quiz.count{
+            return true
+        }
+        else{
+            return false
+            
+        }
+    }
 }
