@@ -51,7 +51,6 @@ class ViewController: UIViewController {
         buttonOne.setTitle(answerArray[0], for: .normal)
         buttonTwo.setTitle(answerArray[1], for: .normal)
         buttonThree.setTitle(answerArray[2], for: .normal)
-//        buttonOne.isHidden=quizLogic.hideButtons()
         buttonTwo.isHidden=quizLogic.hideButtons()
         buttonThree.isHidden=quizLogic.hideButtons()
         buttonOne.backgroundColor=UIColor.clear
