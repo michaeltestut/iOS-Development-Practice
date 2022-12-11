@@ -17,14 +17,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       updateUI()
+        updateUI()
     }
 
     @IBAction func choiceMade(_ sender: UIButton) {
     }
     
     func updateUI(){
-        
     }
     
 }
