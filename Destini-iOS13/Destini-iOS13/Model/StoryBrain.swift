@@ -16,6 +16,7 @@ struct StoryBrain{
     
     mutating func nextStory(userChoice:String){
         storyNumber+=1;
+        //figure out what to do next...
     }
 }
 
