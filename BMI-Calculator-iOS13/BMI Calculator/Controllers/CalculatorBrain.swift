@@ -15,7 +15,7 @@ struct CalculatorBrain{
         if bmiValue<18.5{
             bmi=BMI(value: bmiValue, advice: "Eat More Food Please", color: UIColor.blue)        }
         else if bmiValue<24.9{
-            bmi=BMI(value: bmiValue, advice: "Keep it up!", color: UIColor.green)
+            bmi=BMI(value: bmiValue, advice: "You are fit as a fiddle! Keep it up!", color: UIColor.green)
         }
         else{
             bmi=BMI(value: bmiValue, advice: "Eat more veggies and exercise!", color: UIColor.red)
@@ -25,5 +25,13 @@ struct CalculatorBrain{
     func getBMIValue()->String{
         let bmiValue=String(format:"%.1f",bmi?.value ?? 0.0)
         return bmiValue
+    }
+    
+    func getAdvice() -> String{
+        return bmi?.advice ?? "None"
+    }
+    
+    func getColor()->UIColor{
+        return bmi?.color ?? UIColor.white
     }
 }
