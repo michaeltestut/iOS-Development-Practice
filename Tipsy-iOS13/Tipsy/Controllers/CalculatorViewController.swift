@@ -17,8 +17,7 @@ class CalculatorViewController: UIViewController {
     var stepperValue=2
     var perPersonTotal=0
     var split="0.00"
-
-
+    
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         billTextField.endEditing(true)
         stepperValue=Int(sender.value)
