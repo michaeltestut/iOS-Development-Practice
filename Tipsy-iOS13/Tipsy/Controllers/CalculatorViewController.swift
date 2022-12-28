@@ -16,6 +16,8 @@ class CalculatorViewController: UIViewController {
     var tipPercentage = 0.1;
     var stepperValue=2
     var perPersonTotal=0
+    var split=0.0
+//    var billTotal:Double=0.0
 
     @IBAction func stepperValueChanged(_ sender: UIStepper) {
         billTextField.endEditing(true)
@@ -25,12 +27,13 @@ class CalculatorViewController: UIViewController {
     }
     
     @IBAction func calculatePressed(_ sender: UIButton) {
-        var billTotal = Double(billTextField.text!)!
-        var split = ((billTotal*tipPercentage)+billTotal)/Double(stepperValue)
+        let billTotal = Double(billTextField.text!) ?? 0
+        split = ((billTotal*tipPercentage)+billTotal)/Double(stepperValue)
         print(tipPercentage)
         print(stepperValue)
         print(billTextField.text!)
         print (round(split*100)/100)
+        self.performSegue(withIdentifier: "goToResult", sender: self)
     }
     @IBAction func tipChanged(_ sender: UIButton) {
         billTextField.endEditing(true)
@@ -47,6 +50,14 @@ class CalculatorViewController: UIViewController {
         }
         else {
             tipPercentage=0.2
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToResult"{
+            let destinationVC=segue.destination as! ResultsViewController
+            destinationVC.splitValue=String(split)
+            
         }
     }
 }

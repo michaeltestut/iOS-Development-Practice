@@ -14,9 +14,14 @@ class ResultsViewController: UIViewController {
     
     @IBOutlet weak var settingsLabel: UILabel!
     
+    var splitValue:String?
+    var peopleValue:String?
+    var tipPercentValue:String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        totalLabel.text=splitValue
+        
         // Do any additional setup after loading the view.
     }
     
